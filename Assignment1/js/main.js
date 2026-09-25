@@ -40,9 +40,9 @@ const fmt = t => {
 const scriptList = document.getElementById("scriptList");
 if (scriptList) {
   scriptList.innerHTML = SCRIPT.map(l => {
-    const cls = l.en ? ' class="quote"' : "";
+    const cls = l.en ? ' class="quote" data-fx="q"' : "";
     const lab = l.label ? '<span class="lab">' + l.label + "</span>" : "";
-    const en  = l.en ? '<span class="qen">“' + l.en + '”</span>' : "";
+    const en  = l.en ? '<span class="qen"><span class="mk"></span><span class="qt">“' + l.en + '”</span></span>' : "";
     const dur = '<span class="dur">' + fmt(l.s) + " – " + fmt(l.e) + "</span>";
     return "<li" + cls + ">" + l.zh + lab + en + dur + "</li>";
   }).join("");
@@ -124,7 +124,8 @@ function onScroll() {
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-/* ---------- 5. 入场动画 .reveal → .in ---------- */
+/* ---------- 5. 差异化入场：只编排 [data-fx] 元素 ---------- */
+/* head=F+B 章节头 / hero=E 主标题 / curtain=E 主旨 / quote=C 引用 / q=C 台词引用 */
 const io = new IntersectionObserver(entries => {
   entries.forEach(en => {
     if (en.isIntersecting) {
@@ -132,5 +133,5 @@ const io = new IntersectionObserver(entries => {
       io.unobserve(en.target);
     }
   });
-}, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+}, { threshold: 0.2, rootMargin: "0px 0px -4% 0px" });
+document.querySelectorAll("[data-fx]").forEach(el => io.observe(el));
