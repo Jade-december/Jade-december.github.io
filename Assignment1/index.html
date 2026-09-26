@@ -65,7 +65,7 @@
   </div>
   <div class="cards3">
     <div class="card"><h3>🎥 镜头</h3><p>全片 17 个场景单一时间轴连续运镜，纯关键帧 easeInOut 缓动，根治画面抖动。</p></div>
-    <div class="card"><h3>🌹 画面</h3><p>AI 绘制水彩 / 油画质感插画 30 余张；「血染玫瑰」与「马车碾压」采用实拍感参考片段整段替换。</p></div>
+    <div class="card"><h3>🌹 画面</h3><p>AI 绘制水彩 / 油画质感插画 30 余张；「血染玫瑰」与「马车碾压」由 Seedance 生成的实拍感片段整段替换。</p></div>
     <div class="card"><h3>✒️ 字幕</h3><p>关键剧情点引用王尔德原文：矩形遮罩扫掠 + 逐字 X 轴位移 + 马克笔标记，强调而不喧宾夺主。</p></div>
   </div>
 </section>
@@ -137,7 +137,7 @@
   </div>
   <div class="cards4">
     <div class="card"><h3>🖼 插画 30+</h3><p>AI 生成水彩 / 油画质感场景与人物：花园、抵刺、染红、书桌、马车……统一暗金夜色调。</p></div>
-    <div class="card"><h3>🎞 参考片段 ×2</h3><p>「血染玫瑰」「马车碾压」采用外获参考片段，逐帧插值 + 变速曲线融入成片。</p></div>
+    <div class="card"><h3>🎞 素材片段 ×2</h3><p>「血染玫瑰」「马车碾压」由 Seedance 文生视频生成，逐帧插值 + 变速曲线融入成片。</p></div>
     <div class="card"><h3>🎙 旁白 23 句</h3><p>edge-tts 云希音色（+28% 语速），逐句合成独立音频，时长即时间轴。</p></div>
     <div class="card"><h3>🎼 音乐 / 字体</h3><p>ambient 环境垫乐（音量 16%）铺底；思源宋体（Noto Serif SC）贯穿全片与网页。</p></div>
   </div>
@@ -158,7 +158,7 @@
     <div class="step"><b>① 文案与分镜</b><span>撰写 23 句旁白与七幕脚本，先定「旁白时长 = 时间轴」的硬约束。</span></div>
     <div class="step"><b>② AI 旁白合成</b><span>edge-tts 逐句生成 mp3，实测时长写入 timeline.json，驱动全片节奏。</span></div>
     <div class="step"><b>③ 场景插画生成</b><span>AI 生图 30+ 张，锚点定位（鸟胸、玫瑰、轮心）经像素检测校准。</span></div>
-    <div class="step"><b>④ Remotion 合成</b><span>React 组件即视频：场景表驱动镜头缓动，OffthreadVideo 混入参考片段。</span></div>
+    <div class="step"><b>④ Remotion 合成</b><span>React 组件即视频：场景表驱动镜头缓动，OffthreadVideo 混入 Seedance 生成的素材片段。</span></div>
     <div class="step"><b>⑤ 字幕特效系统</b><span>clipPath 矩形遮罩扫掠 + 逐字 X 轴位移 + 马克笔标记三层特效，强调不抢戏。</span></div>
     <div class="step"><b>⑥ 渲染与压缩</b><span>Remotion 逐帧渲染 2783 帧；ffmpeg 两遍编码压至 GitHub 可承载的 100MB 内。</span></div>
   </div>
@@ -177,17 +177,44 @@
 <section id="tools" class="sec">
   <div class="sec-head" data-fx="head">
     <span class="sec-no">07 / TOOLS</span>
-    <h2>工具链</h2>
+    <h2>工具链 · 插件 · Skill</h2>
+    <p>从成片到网页：一条完整的「AI 素材 → 代码合成 → 截图审计 → 发布」生产链。</p>
   </div>
   <div class="cards4">
-    <div class="card"><h3>Remotion 4</h3><p>React 视频引擎，代码即成片，逐帧可复现。</p></div>
-    <div class="card"><h3>edge-tts</h3><p>微软神经语音，合成 AI 旁白 23 句。</p></div>
-    <div class="card"><h3>FFmpeg</h3><p>抽帧 / 插值装配 / 两遍压缩 / 音轨封装。</p></div>
-    <div class="card"><h3>PIL · NumPy</h3><p>逐帧线性插值，绕开滤镜缺陷实现平滑慢放。</p></div>
-    <div class="card"><h3>AI 生图</h3><p>水彩 / 油画质感场景与人物设定图。</p></div>
-    <div class="card"><h3>VS Code · TS</h3><p>TypeScript 严格类型检查驱动迭代。</p></div>
-    <div class="card"><h3>Git · GitHub Pages</h3><p>版本管理与作业发布。</p></div>
-    <div class="card"><h3>Cloudflare</h3><p>备用 CDN 与加速通道。</p></div>
+    <div class="card"><h3>Remotion 4</h3><p>React 视频引擎，代码即成片，逐帧可复现，2783 帧一次渲染成型。</p></div>
+    <div class="card"><h3>Seedance</h3><p>文生视频，生成「血染玫瑰」「马车碾压」两个实拍感素材片段。</p></div>
+    <div class="card"><h3>edge-tts</h3><p>微软神经语音（云希音色），逐句合成 AI 旁白 23 句。</p></div>
+    <div class="card"><h3>AI 文生图</h3><p>水彩 / 油画质感场景与人物插画 30 余张，统一暗金夜色调。</p></div>
+    <div class="card"><h3>FFmpeg</h3><p>抽帧取图 / 两遍编码压缩 / faststart 流式封装 / 音轨装配。</p></div>
+    <div class="card"><h3>PIL · NumPy</h3><p>绕开滤镜缺陷，逐帧线性插值实现平滑慢放与素材变速。</p></div>
+    <div class="card"><h3>Noto Serif SC</h3><p>思源宋体，全片与网页贯穿同一套衬线排版语言。</p></div>
+    <div class="card"><h3>VS Code · TS</h3><p>TypeScript 严格类型检查，驱动 Remotion 组件迭代。</p></div>
+    <div class="card"><h3>Git · GitHub Pages</h3><p>版本管理 + Pages 静态发布，令牌认证免密推送。</p></div>
+    <div class="card"><h3>Cloudflare</h3><p>备用 CDN 与访问加速通道（按作业要求注册配置）。</p></div>
+    <div class="card"><h3>Watt Toolkit</h3><p>Steam++ 网络加速，GitHub 上传与访问的备用通道。</p></div>
+    <div class="card"><h3>Playwright</h3><p>无头浏览器截图审计：每轮改版先过静帧闸门再上线。</p></div>
+  </div>
+  <div class="tech-note">
+    <h3>Agent 插件与 Skill 清单</h3>
+    <ul>
+      <li><b>remotion-longform-video-ops</b>：长视频工程方法论——「短样片先行 → 帧级审查 → 定稿再全片渲染」的迭代流程与 92.8s 长片的无肉眼画面验证。</li>
+      <li><b>remotion-video-toolkit</b>：Remotion 动画、时序、渲染（CLI / 超时守护 / 分段渲染）的完整工具链参考。</li>
+      <li><b>motion-web</b>（按需求安装）：创意网页动效方法论与 design-slop 设计闸门——驱动本页四套差异化入场编排、hover 去同款、reduced-motion 无障碍降级。</li>
+      <li><b>Playwright 截图审计链</b>：Chromium 自动截图，逐屏验证「减少动态」模式无内容卡隐形（红线检查）与动效关键帧状态。</li>
+      <li><b>AI 生成插件</b>：文生图（30+ 插画）、Seedance 文生视频（2 段素材片段）、edge-tts 语音合成（23 句旁白）。</li>
+    </ul>
+  </div>
+  <div class="tech-note">
+    <h3>视频中运用的美工技能</h3>
+    <ul>
+      <li><b>视觉风格板</b>：暗夜金主题（夜空底 × 暗金 × 象牙白三色体系），水彩 / 油画质感插画统一色调与光感。</li>
+      <li><b>构图与运镜</b>：17 场景共享单一时间轴的连续长镜，锚点定位（鸟胸 / 玫瑰 / 轮心）经像素检测校准。</li>
+      <li><b>字体排印</b>：思源宋体贯穿；中文比英文大一号、英文斜体、章节标签 + 时间码的三级信息层级。</li>
+      <li><b>PV 字幕特效</b>：矩形遮罩扫掠 + 逐字 X 轴位移 + 马克笔标记三层合成，40%~50% 不透明度克制强调。</li>
+      <li><b>色彩与对比度校正</b>：径向暗幕压住白色玫瑰背景保主标题可读；收束句暗金标记遮罩与字幕同步。</li>
+      <li><b>变速节奏设计</b>：0.72× → 0.28× 余弦平滑变速，保住血染绽放与车轮碾压的实拍感张力。</li>
+      <li><b>网页视觉设计</b>：Hero 海报构图、遮罩揭幕 / 编号滑入 / 金线扫掠 / 马克笔扫掠四套入场编排、三档动效令牌体系。</li>
+    </ul>
   </div>
 </section>
 
@@ -195,13 +222,29 @@
 <section id="summary" class="sec alt">
   <div class="sec-head" data-fx="head">
     <span class="sec-no">08 / SUMMARY</span>
-    <h2>总结 · 踩坑与收获</h2>
+    <h2>总结 · 返工记录与踩坑</h2>
+  </div>
+  <div class="tech-note">
+    <h3>需求与返工全记录</h3>
+    <ul>
+      <li><b>需求① 引用原文</b>：在关键剧情点引用王尔德原文（中英对照）→ 落地为 8 处引用特效（血染高潮 S13 有意排除，不抢戏）。</li>
+      <li><b>需求② 片尾重做</b>：删去「王尔德 · 1888」署名，等长替换为主旨分析；新旁白以字数反推等长台词，全片 92.8 秒一帧不变。</li>
+      <li><b>需求③ PV 字幕特效</b>：矩形遮罩 + X 轴不透明度，强调而不喧宾夺主 → 先做 3 支样片过审，再全片实施。</li>
+      <li><b>返工① 片头</b>：字体太小、白字撞白玫瑰背景 → 字号加大加粗 + 径向暗幕压暗背景。</li>
+      <li><b>返工② 引用层级</b>：英文改斜体、中文反超英文一号、中文加马克笔遮罩（40%~50% 不透明度、略暗于背景）。</li>
+      <li><b>返工③ 片尾节奏</b>：主旨卡下移至画面正中、长旁白落回底部字幕位、收束句加暗金同步遮罩。</li>
+      <li><b>返工④ 网页动效</b>：整页统一 fade-up 被设计闸门判为「模板味」→ 出 6 种入场样本对比，改为章节编号滑入 / 标题揭幕 / 副题金线 / 引用马克笔四套差异化编排。</li>
+    </ul>
   </div>
   <div class="pits">
     <div class="pit"><span class="x">✕</span><div><b>ffmpeg 滤镜不可用</b><p>捆绑版 ffmpeg 的 fps/setpts/minterpolate 全部报错 → 改用纯抽帧 + PIL/NumPy 逐帧插值后重组，反而获得更平滑的慢放。</p></div></div>
     <div class="pit"><span class="x">✕</span><div><b>慢放「一冲一冲」</b><p>0.31× 均匀慢放放大了素材本身的不均匀运镜 → 改为 0.72×→0.28× 余弦变速曲线，镜头推进与玫瑰盛开两者兼得。</p></div></div>
     <div class="pit"><span class="x">✕</span><div><b>全片渲染超时崩溃</b><p>视频素材慢帧超出默认 30s 帧超时 → --timeout=120000 后 2783 帧完整渲染通过。</p></div></div>
     <div class="pit"><span class="x">✕</span><div><b>GitHub 100MB 单文件限制</b><p>成片 224MB 无法上传 → ffmpeg 两遍编码（6500kbps + faststart）压至约 73MB，画质几乎无损。</p></div></div>
+    <div class="pit"><span class="x">✕</span><div><b>孤字换行</b><p>18 字台词最后一个字被挤到第二行 → 字距与内边距收紧，18×49px 恰好收进 900px 单行。</p></div></div>
+    <div class="pit"><span class="x">✕</span><div><b>旧字幕泄漏</b><p>引用特效上线后 S02 与底部字幕同屏重复、片尾旧署名从底部漏出 → 加显隐守卫，引用句与底部字幕互斥。</p></div></div>
+    <div class="pit"><span class="x">✕</span><div><b>Windows 工具链差异</b><p>Windows ffmpeg 不认 /dev/null（两遍编码 pass 1 改 -f null -）；中文目录名被 URL 编码 → 仓库根即站点根，线上路径不含中文。</p></div></div>
+    <div class="pit"><span class="x">✕</span><div><b>整页同款动效</b><p>全页统一 fade-up + 统一 hover 抬升，滚动两屏即被无视 → 动效令牌分三档，入场按内容角色差异化，hover 改为语义化（卡片点亮 / 图片推近）。</p></div></div>
   </div>
   <div class="closing" data-fx="curtain">
     <p class="e-curt"><span class="e-in">“一根刺、一首歌、一朵玫瑰——理想主义的代价，是没有人记得它曾经开过花。而代码记得它的每一帧。”</span></p>
